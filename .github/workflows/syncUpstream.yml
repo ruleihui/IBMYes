@@ -28,7 +28,7 @@ jobs:
         git checkout upstreamBak
         rm -rf ./*
         git clone https://github.com/CCChieh/IBMYes.git
-        cp ./IBMYes/* ./
+        cp -r ./IBMYes/* ./
         rm -rf ./IBMYes
         git add .
         git commit -m "update"
