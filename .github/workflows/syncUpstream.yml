@@ -1,0 +1,33 @@
+name: 'sync Upstream'
+
+on:
+  push:
+    branches: 
+      - master
+  schedule:
+    - cron: '0 17 * * *'
+
+jobs:
+  get_points:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout codes'
+      uses: actions/checkout@v2
+    - name: 'updateUpstream'
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        EMAIL:  ${{secrets.EMAIL}}
+        NAME: ${{secrets.NAME}} 
+      run: |
+        ls -a
+        git clone "https://$API_TOKEN_GITHUB@github.com/$NAME/goindex-theme-acrou.git" "goindex-theme-acrou"
+        cd goindex-theme-acrou/
+        git config --global user.email "$EMAIL"
+        git config --global user.name "$NAME"
+        git remote -v
+        git checkout upstreamBak
+        git remote add upstream https://github.com/Aicirou/goindex-theme-acrou.git
+        git remote -v
+        git fetch upstream
+        git merge upstream/master -m "update"
+        git push origin upstreamBak
