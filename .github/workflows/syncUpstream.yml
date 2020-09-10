@@ -22,14 +22,18 @@ jobs:
         ls -a
         git clone "https://$API_TOKEN_GITHUB@github.com/$NAME/IBMYes.git" "IBMYes"
         cd IBMYes/
-        git config --global user.email "$EMAIL"
-        git config --global user.name "$NAME"
-        git remote -v
         git checkout upstreamBak
+        echo 'start remove allOriginFiles'
         rm -rf ./*
+        echo 'remove finish'
+        echo 'clone rootStreamFiles'
         git clone https://github.com/CCChieh/IBMYes.git
+        echo 'cp rootStreamFiles to currentDirectory&&remove rootStream'
         cp -r ./IBMYes/* ./
         rm -rf ./IBMYes
-        git add .
+        ls
+        echo 'add&&commit'
+        git add ./*
         git commit -m "update"
+        echo 'start push'
         git push origin upstreamBak
