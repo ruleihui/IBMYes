@@ -20,8 +20,8 @@ jobs:
         NAME: ${{secrets.NAME}} 
       run: |
         ls -a
-        git clone "https://$API_TOKEN_GITHUB@github.com/$NAME/goindex-theme-acrou.git" "goindex-theme-acrou"
-        cd goindex-theme-acrou/
+        git clone "https://$API_TOKEN_GITHUB@github.com/$NAME/IBMYes.git" "IBMYes"
+        cd IBMYes/
         git config --global user.email "$EMAIL"
         git config --global user.name "$NAME"
         git remote -v
