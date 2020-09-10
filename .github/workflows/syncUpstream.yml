@@ -37,6 +37,6 @@ jobs:
         ls
         echo 'add&&commit'
         git add ./*
-        git commit -m "update"
+        git commit -a -m "update"
         echo 'start push'
         git push origin upstreamBak
