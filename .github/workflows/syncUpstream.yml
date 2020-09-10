@@ -19,24 +19,22 @@ jobs:
         EMAIL:  ${{secrets.EMAIL}}
         NAME: ${{secrets.NAME}} 
       run: |
-        ls -a
         git clone "https://$API_TOKEN_GITHUB@github.com/$NAME/IBMYes.git" "IBMYes"
         cd IBMYes/
         git checkout upstreamBak
-        echo 'config global'
+        echo '--------------------------config global'
         git config --global user.email "$EMAIL"	
         git config --global user.name "$NAME"
-        echo 'start remove allOriginFiles'
+        echo '--------------------------start remove allOriginFiles'
         rm -rf ./*
-        echo 'remove finish'
-        echo 'clone rootStreamFiles'
+        echo '--------------------------remove finish'
+        echo '--------------------------clone rootStreamFiles'
         git clone https://github.com/CCChieh/IBMYes.git
-        echo 'cp rootStreamFiles to currentDirectory&&remove rootStream'
+        echo '--------------------------cp rootStreamFiles to currentDirectory&&remove rootStream'
         cp -r ./IBMYes/* ./
         rm -rf ./IBMYes
-        ls
-        echo 'add&&commit'
+        echo '--------------------------add&&commit'
         git add ./*
-        git commit -a -m "update"
-        echo 'start push'
+        echo `git commit -a -m "update"`
+        echo '--------------------------start push'
         git push origin upstreamBak
