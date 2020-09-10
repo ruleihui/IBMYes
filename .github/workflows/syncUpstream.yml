@@ -23,6 +23,9 @@ jobs:
         git clone "https://$API_TOKEN_GITHUB@github.com/$NAME/IBMYes.git" "IBMYes"
         cd IBMYes/
         git checkout upstreamBak
+        echo 'config global'
+        git config --global user.email "$EMAIL"	
+        git config --global user.name "$NAME"
         echo 'start remove allOriginFiles'
         rm -rf ./*
         echo 'remove finish'
