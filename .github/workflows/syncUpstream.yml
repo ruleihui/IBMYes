@@ -35,6 +35,9 @@ jobs:
         rm -rf ./IBMYes
         echo '--------------------------add&&commit'
         git add ./*
+        echo 'when commit result is On branch upstreamBak Your branch is up to date with origin/upstreamBak. nothing to commit, working tree clean'
+        echo 'github action will return a ##[error]Process completed with exit code 1.'
+        echo 'so execute commit by "`" can avoid error'
         echo `git commit -a -m "update"`
         echo '--------------------------start push'
         git push origin upstreamBak
