@@ -26,9 +26,10 @@ jobs:
         git config --global user.name "$NAME"
         git remote -v
         git checkout upstreamBak
-        git remote add upstream https://github.com/CCChieh/IBMYes.git
         rm -rf ./*
-        git fetch upstream
+        git clone https://github.com/CCChieh/IBMYes.git
+        cp ./IBMYes/* ./
+        rm -rf ./IBMYes
         git add .
         git commit -m "update"
         git push origin upstreamBak
