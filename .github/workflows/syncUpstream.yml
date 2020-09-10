@@ -26,7 +26,7 @@ jobs:
         git config --global user.name "$NAME"
         git remote -v
         git checkout upstreamBak
-        git remote add upstream https://github.com/Aicirou/goindex-theme-acrou.git
+        git remote add upstream https://github.com/CCChieh/IBMYes.git
         git remote -v
         git fetch upstream
         git merge upstream/master -m "update"
