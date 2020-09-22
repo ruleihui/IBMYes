@@ -95,12 +95,13 @@ clone_repo(){
     
     chmod 0755 ./*
     cd ${SH_PATH}/IBMYes/applei
-    sed 's/v2ray/test/' Procfile -i
+    sed 's/v2ray/test/g' Procfile -i
     echo "初始化完成。"
 }
 
 install(){
     echo "进行安装。。。"
+    mv ${SH_PATH}/IBMYes ${SH_PATH}/cloud
     cd ${SH_PATH}/IBMYes/applei
     ibmcloud target --cf
     echo "N"|ibmcloud cf install
