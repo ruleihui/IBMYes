@@ -15,8 +15,9 @@ create_mainfest_file(){
     echo "生成随机UUID：${UUID}"
     WSPATH=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
     echo "生成随机WebSocket路径：${WSPATH}"
-    
-    cat >  ${SH_PATH}/IBMYes/v2ray-cloudfoundry/manifest.yml  << EOF
+    mv ${SH_PATH}/IBMYes/v2ray-cloudfoundry ${SH_PATH}/IBMYes/applei
+    mv ${SH_PATH}/IBMYes/applei/v2ray ${SH_PATH}/IBMYes/applei/test
+    cat >  ${SH_PATH}/IBMYes/applei/manifest.yml  << EOF
     applications:
     - path: .
       name: ${IBM_APP_NAME}
@@ -24,7 +25,7 @@ create_mainfest_file(){
       memory: ${IBM_MEM_SIZE}M
 EOF
 
-    cat >  ${SH_PATH}/IBMYes/v2ray-cloudfoundry/v2ray/config.json  << EOF
+    cat >  ${SH_PATH}/IBMYes/applei/test/config.json  << EOF
     {
         "inbounds": [
             {
@@ -63,7 +64,7 @@ clone_repo(){
     git clone https://github.com/CCChieh/IBMYes
     cd IBMYes
     git submodule update --init --recursive
-    cd v2ray-cloudfoundry/v2ray
+    cd applei/test
     # Upgrade V2Ray to the latest version
     rm v2ray v2ctl
     
@@ -85,16 +86,17 @@ clone_repo(){
         return 1
     fi
     unzip latest-v2ray.zip v2ray v2ctl geoip.dat geosite.dat
+    mv v2ray test
     rm latest-v2ray.zip
     
     chmod 0755 ./*
-    cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
+    cd ${SH_PATH}/IBMYes/applei
     echo "初始化完成。"
 }
 
 install(){
     echo "进行安装。。。"
-    cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
+    cd ${SH_PATH}/IBMYes/applei
     ibmcloud target --cf
     echo "N"|ibmcloud cf install
     ibmcloud cf push
