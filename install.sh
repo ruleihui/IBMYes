@@ -102,7 +102,7 @@ clone_repo(){
 install(){
     echo "进行安装。。。"
     mv ${SH_PATH}/IBMYes ${SH_PATH}/cloud
-    cd ${SH_PATH}/IBMYes/applei
+    cd ${SH_PATH}/cloud/applei
     ibmcloud target --cf
     echo "N"|ibmcloud cf install
     ibmcloud cf push
@@ -112,8 +112,8 @@ install(){
     VMESSCODE=$(base64 -w 0 << EOF
     {
       "v": "2",
-      "ps": "ibmyes",
-      "add": "ibmyes.us-south.cf.appdomain.cloud",
+      "ps": "${IBM_APP_NAME}",
+      "add": "${IBM_APP_NAME}.us-south.cf.appdomain.cloud",
       "port": "443",
       "id": "${UUID}",
       "aid": "4",
