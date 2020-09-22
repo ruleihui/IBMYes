@@ -15,8 +15,7 @@ create_mainfest_file(){
     echo "生成随机UUID：${UUID}"
     WSPATH=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
     echo "生成随机WebSocket路径：${WSPATH}"
-    mv ${SH_PATH}/IBMYes/v2ray-cloudfoundry ${SH_PATH}/IBMYes/applei
-    mv ${SH_PATH}/IBMYes/applei/v2ray ${SH_PATH}/IBMYes/applei/test
+    
     cat >  ${SH_PATH}/IBMYes/applei/manifest.yml  << EOF
     applications:
     - path: .
@@ -64,6 +63,10 @@ clone_repo(){
     git clone https://github.com/CCChieh/IBMYes
     cd IBMYes
     git submodule update --init --recursive
+    
+    mv ${SH_PATH}/IBMYes/v2ray-cloudfoundry ${SH_PATH}/IBMYes/applei
+    mv ${SH_PATH}/IBMYes/applei/v2ray ${SH_PATH}/IBMYes/applei/test
+    
     cd applei/test
     # Upgrade V2Ray to the latest version
     rm v2ray v2ctl
