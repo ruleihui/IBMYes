@@ -86,11 +86,13 @@ clone_repo(){
         return 1
     fi
     unzip latest-v2ray.zip v2ray v2ctl geoip.dat geosite.dat
+    
     mv v2ray test
     rm latest-v2ray.zip
     
     chmod 0755 ./*
     cd ${SH_PATH}/IBMYes/applei
+    sed 's/v2ray/test/' Procfile -i
     echo "初始化完成。"
 }
 
